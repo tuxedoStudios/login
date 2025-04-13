@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <title>Prisijungimas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      padding-right: 40px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 34px;
+      right: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Prisijungimas</h2>
+
+    <div class="input-group">
+      <label for="username">Prisijungimo vardas</label>
+      <input type="text" id="username" required>
+    </div>
+
+    <div class="input-group">
+      <label for="password">Slaptažodis</label>
+      <input type="password" id="password" required>
+      <span class="toggle-password" onclick="togglePassword()">👁️</span>
+    </div>
+
+    <button onclick="login()">Prisijungti</button>
+    <div id="errorMessage" class="error"></div>
+  </div>
+
+  <script>
+    // ČIA PRIDĖKITE NAUJUS VARTOTOJUS
+    const users = {
+      'bip': '0012',
+      'lukas': 'lukas123',
+      'gustas': 'gustas123'
+      // Pvz.: 'naujovartotojas': 'slaptazodis'
+    };
+
+    function login() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorMessage = document.getElementById('errorMessage');
+
+      if (users[username] === password) {
+        window.location.href = "https://sites.google.com/view/bipleidykla/books";
+      } else {
+        errorMessage.textContent = "Neteisingas vardas arba slaptažodis.";
+      }
+    }
+
+    function togglePassword() {
+      const passwordField = document.getElementById("password");
+      const toggle = document.querySelector(".toggle-password");
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggle.textContent = "👁️‍🗨️";
+      } else {
+        passwordField.type = "password";
+        toggle.textContent = "👁️";
+      }
+    }
+  </script>
+
+</body>
+</html>
